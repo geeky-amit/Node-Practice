@@ -1,14 +1,10 @@
 const http = require('http');
 const fs = require('fs');
 
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 4000;
 
 const home = fs.readFileSync("./index.html", "utf8");
 const about = fs.readFileSync("./about.html", "utf8");
-
-
-
-
 
 const server = http.createServer((req, res) => {
 
@@ -25,7 +21,7 @@ const server = http.createServer((req, res) => {
     }
 
     if(req.url === "/services"){
-        res.end("<h1>Services Page</h1>")
+        return res.end("<h1>Services Page</h1>")
     }
 
     if(req.url === "/contact"){
@@ -36,11 +32,7 @@ const server = http.createServer((req, res) => {
     }
 });
 
-
-
-
-
-server.listen(PORT,() =>{
+server.listen(PORT, () =>{
     
         console.log(`Server is working`);
    
